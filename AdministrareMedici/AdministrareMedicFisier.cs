@@ -19,6 +19,10 @@ namespace AdministrareMedici
             Stream streamFileText = File.Open(_fileName, FileMode.OpenOrCreate);
             streamFileText.Close();
         }
+        public AdministrareMediciFisier() {
+            fileName = string.Empty;
+
+        }
         public void AddMedicToFile(Medic Med)
         {
 
@@ -27,6 +31,13 @@ namespace AdministrareMedici
                 streamWriteMedicToFile.WriteLine(Med.ToStrForFile());
             }
 
+        }
+        public void SetFileName(string _fileName) {
+            fileName = _fileName;
+            Stream StreamFile = File.Open(_fileName, FileMode.OpenOrCreate);
+            StreamFile.Close();
+        
+        
         }
         public Medic[] GetMedicsFromFile(out int nrMedics)
         {

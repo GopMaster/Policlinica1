@@ -4,6 +4,7 @@ using AdministrareMedici;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Policlinica;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace Program
@@ -13,8 +14,22 @@ namespace Program
 
         static void Main(string[] args)
         {
+
+           
+           
+                AdministrareMediciFisier AdminMedic = new AdministrareMediciFisier();
+            if (args.Length == 0)
+            {
+                AdminMedic.SetFileName(FisierConfigurari.GetFileNameConf());
+                Console.WriteLine("Nu avem argumente in linia de comanda");
+                
+            }
+            else {
+                Console.WriteLine("Datele se vor pastra si vor fi citite din fisierul {0}\n", args[0]);
+                AdminMedic.SetFileName(args[0]);
+                
+            }
             NivelDeStocareMedic meds = new NivelDeStocareMedic();
-            AdministrareMediciFisier AdminMedic = new AdministrareMediciFisier(AdministrareMediciFisier.fileName);
             Medic temp_medic = new Medic();
             char CHR;
             while (true)
@@ -41,6 +56,9 @@ namespace Program
                         break;
                     case '5':
                         AfisareMedici(meds);
+                        break;
+                    case '6':
+                        meds.FindMedic();
                         break;
 
                     default:
@@ -70,6 +88,7 @@ namespace Program
             Console.WriteLine("3. Adauga medic in fisier");
             Console.WriteLine("4.Citeste medici din fisier");
             Console.WriteLine("5.Afisare medici");
+            Console.WriteLine("6.Cautare Medic din lista curenta");
 
 
 
@@ -127,12 +146,31 @@ namespace Program
                 nrTelefon = Console.ReadLine();
             } while (FunctieValidareText(nrTelefon, @"^(072|073|074|075|076|077|078)\d{7}$") == false);
             Int32.TryParse(varsta, out int age);
-            Console.WriteLine("Introduceti Specializarea medicului");
-            string _specializ = Console.ReadLine();
+            string _specializ = string.Empty;
+                Console.Clear();
+                Console.WriteLine("Introduceti Specializarea medicului");
+                PrintSpecializare();
+            do
+            {
+                _specializ = string.Empty;
+                
+                Int32.TryParse(Console.ReadLine(), out int MedType);
+                if (Enum.IsDefined(typeof(DoctorType), MedType))
+                {
+                    Enum.TryParse((MedType).ToString(), out DoctorType res);
+                    _specializ = res.ToString();
+                }
+                else {
+                    Console.WriteLine("Introduceti o varianta valabila\n");
+                }
+
+            } while (_specializ == string.Empty);
+            
+           
             return new Medic(nume, prenume, age, gen, nrTelefon, email, _specializ);
 
         }
-
+        
         public static void AfisareInfoMedic(Medic med)
         {
             Console.WriteLine(med.InfoPers());
@@ -145,6 +183,14 @@ namespace Program
                 Console.WriteLine(listamedici.Medici[i].InfoPers());
             }
 
+        }
+        public static void PrintSpecializare() {
+            DoctorType[] doctortypes = (DoctorType[])Enum.GetValues(typeof(DoctorType));
+            int i = 0;
+            foreach (DoctorType doctor in doctortypes) {
+                Console.WriteLine("{0}.{1}",i,doctor);
+                i++;
+            }
         }
 
 

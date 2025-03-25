@@ -8,24 +8,21 @@ namespace Policlinica
 {
     public class Medic : Persoana
     {
-        enum Part
-        {
-            E_ID,
-            E_NUME,
-            E_PRENUME,
-            E_AGE,
-            E_GEN,
-            E_NRTELEFON,
-            E_EMAIL,
-            E_SPECIALIZARE,
-            E_NROPS
-        }
+
 
         private const char SEPARATOR = ';';
         string Specializare;
+        public string GetSpecializare
+        {
+            get { return Specializare; }
+        }
         int NrOperatiuni;
-        static int ID = 0;
+        static int ID = 0 ;
+
         int IdMedic;
+        public int GetID {
+            get { return IdMedic; }
+        }
         public Medic() : base()
         {
             Specializare = string.Empty;
@@ -45,6 +42,7 @@ namespace Policlinica
             IdMedic = ID++;
 
         }
+      
         public Medic(string fileLine)
         {
             if (fileLine != string.Empty)
@@ -67,7 +65,7 @@ namespace Policlinica
 
         public override string InfoPers()
         {
-            return string.Format("{0} {1}", IdMedic.ToString(), base.InfoPers());
+            return string.Format("ID{0} TIP_MEDIC[{1}]\n {2} ", IdMedic.ToString(),Specializare, base.InfoPers());
         }
         public void FinalizareOp()
         {
@@ -86,5 +84,6 @@ namespace Policlinica
                 );
             return MedicFileFormat;
         }
+
     }
 }
