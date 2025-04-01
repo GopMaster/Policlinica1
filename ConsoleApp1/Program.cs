@@ -21,6 +21,7 @@ namespace Program
             if (args.Length == 0)
             {
                 AdminMedic.SetFileName(FisierConfigurari.GetFileNameConf());
+                Console.WriteLine(FisierConfigurari.GetFileNameConf());
                 Console.WriteLine("Nu avem argumente in linia de comanda");
                 
             }

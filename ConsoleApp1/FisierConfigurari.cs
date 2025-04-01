@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Program
 {
-    static class FisierConfigurari
+    public static class FisierConfigurari
     {
         private static string Title = ConfigurationManager.AppSettings.Get("App Title");
         private static string FileNameConf = ConfigurationManager.AppSettings.Get("File Name");
