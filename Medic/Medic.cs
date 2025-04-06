@@ -23,6 +23,25 @@ namespace Policlinica
         public int GetID {
             get { return IdMedic; }
         }
+        public char GetGen {
+            get { return Gen; }
+         }
+        public string GetEmail {
+            get { return email; }
+        }
+        public string GetTelefon {
+            get { return nrTelefon; }
+        }
+        public int GetVarsta {
+            get { return age; }
+        }
+        public string GetNume {
+            get { return Nume; }
+        }
+        public string GetPrenume {
+            get { return Prenume; }
+        }
+
         public Medic() : base()
         {
             Specializare = string.Empty;
