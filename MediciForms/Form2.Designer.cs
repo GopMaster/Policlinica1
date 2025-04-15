@@ -47,86 +47,107 @@ namespace MediciForms
             this.textTelefon = new System.Windows.Forms.TextBox();
             this.ButonValidare = new System.Windows.Forms.Button();
             this.buttonVizualizareMedici = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelNume
             // 
             this.labelNume.AutoSize = true;
-            this.labelNume.Location = new System.Drawing.Point(92, 55);
+            this.labelNume.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNume.Location = new System.Drawing.Point(384, 101);
+            this.labelNume.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelNume.Name = "labelNume";
-            this.labelNume.Size = new System.Drawing.Size(35, 13);
+            this.labelNume.Size = new System.Drawing.Size(58, 22);
             this.labelNume.TabIndex = 0;
             this.labelNume.Text = "Nume";
             // 
             // labelPrenume
             // 
             this.labelPrenume.AutoSize = true;
-            this.labelPrenume.Location = new System.Drawing.Point(248, 55);
+            this.labelPrenume.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.labelPrenume.Location = new System.Drawing.Point(722, 101);
+            this.labelPrenume.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelPrenume.Name = "labelPrenume";
-            this.labelPrenume.Size = new System.Drawing.Size(49, 13);
+            this.labelPrenume.Size = new System.Drawing.Size(83, 22);
             this.labelPrenume.TabIndex = 1;
             this.labelPrenume.Text = "Prenume";
             // 
             // labelVarsta
             // 
             this.labelVarsta.AutoSize = true;
-            this.labelVarsta.Location = new System.Drawing.Point(248, 146);
+            this.labelVarsta.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.labelVarsta.Location = new System.Drawing.Point(527, 208);
+            this.labelVarsta.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelVarsta.Name = "labelVarsta";
-            this.labelVarsta.Size = new System.Drawing.Size(37, 13);
+            this.labelVarsta.Size = new System.Drawing.Size(63, 22);
             this.labelVarsta.TabIndex = 2;
             this.labelVarsta.Text = "Varsta";
             // 
             // labelGen
             // 
             this.labelGen.AutoSize = true;
-            this.labelGen.Location = new System.Drawing.Point(399, 55);
+            this.labelGen.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.labelGen.Location = new System.Drawing.Point(384, 208);
+            this.labelGen.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelGen.Name = "labelGen";
-            this.labelGen.Size = new System.Drawing.Size(27, 13);
+            this.labelGen.Size = new System.Drawing.Size(44, 22);
             this.labelGen.TabIndex = 3;
             this.labelGen.Text = "Gen";
             // 
             // labelTelefon
             // 
             this.labelTelefon.AutoSize = true;
-            this.labelTelefon.Location = new System.Drawing.Point(72, 227);
+            this.labelTelefon.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.labelTelefon.Location = new System.Drawing.Point(335, 301);
+            this.labelTelefon.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelTelefon.Name = "labelTelefon";
-            this.labelTelefon.Size = new System.Drawing.Size(77, 13);
+            this.labelTelefon.Size = new System.Drawing.Size(132, 22);
             this.labelTelefon.TabIndex = 4;
             this.labelTelefon.Text = "Numar Telefon";
             // 
             // labelSpecialitate
             // 
             this.labelSpecialitate.AutoSize = true;
-            this.labelSpecialitate.Location = new System.Drawing.Point(399, 146);
+            this.labelSpecialitate.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.labelSpecialitate.Location = new System.Drawing.Point(696, 208);
+            this.labelSpecialitate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelSpecialitate.Name = "labelSpecialitate";
-            this.labelSpecialitate.Size = new System.Drawing.Size(64, 13);
+            this.labelSpecialitate.Size = new System.Drawing.Size(109, 22);
             this.labelSpecialitate.TabIndex = 5;
             this.labelSpecialitate.Text = "Specializare";
             // 
             // labelEmail
             // 
             this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(92, 146);
+            this.labelEmail.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.labelEmail.Location = new System.Drawing.Point(747, 301);
+            this.labelEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(32, 13);
+            this.labelEmail.Size = new System.Drawing.Size(58, 22);
             this.labelEmail.TabIndex = 6;
             this.labelEmail.Text = "Email";
             // 
             // textNume
             // 
-            this.textNume.Location = new System.Drawing.Point(59, 92);
+            this.textNume.Location = new System.Drawing.Point(305, 136);
+            this.textNume.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textNume.Name = "textNume";
-            this.textNume.Size = new System.Drawing.Size(100, 20);
+            this.textNume.Size = new System.Drawing.Size(231, 24);
             this.textNume.TabIndex = 7;
-            this.textNume.TextChanged += new System.EventHandler(this.textNume_TextChanged);
+            this.textNume.Enter += new System.EventHandler(this.textNume_Enter);
+            this.textNume.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textNume_KeyDown);
+            this.textNume.Leave += new System.EventHandler(this.textNume_Leave);
             // 
             // textPrenume
             // 
-            this.textPrenume.Location = new System.Drawing.Point(219, 92);
+            this.textPrenume.Location = new System.Drawing.Point(650, 136);
+            this.textPrenume.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textPrenume.Name = "textPrenume";
-            this.textPrenume.Size = new System.Drawing.Size(100, 20);
+            this.textPrenume.Size = new System.Drawing.Size(231, 24);
             this.textPrenume.TabIndex = 8;
-            this.textPrenume.TextChanged += new System.EventHandler(this.textPrenume_TextChanged);
+            this.textPrenume.Enter += new System.EventHandler(this.textPrenume_Enter);
+            this.textPrenume.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textPrenume_KeyDown);
+            this.textPrenume.Leave += new System.EventHandler(this.textPrenume_Leave);
             // 
             // comboBoxGen
             // 
@@ -135,51 +156,61 @@ namespace MediciForms
             this.comboBoxGen.Items.AddRange(new object[] {
             "Masculin",
             "Feminin"});
-            this.comboBoxGen.Location = new System.Drawing.Point(365, 92);
+            this.comboBoxGen.Location = new System.Drawing.Point(305, 246);
+            this.comboBoxGen.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.comboBoxGen.Name = "comboBoxGen";
-            this.comboBoxGen.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxGen.Size = new System.Drawing.Size(162, 26);
             this.comboBoxGen.TabIndex = 10;
-            this.comboBoxGen.SelectedIndexChanged += new System.EventHandler(this.comboBoxGen_SelectedIndexChanged);
             // 
             // textEmail
             // 
-            this.textEmail.Location = new System.Drawing.Point(59, 178);
+            this.textEmail.Location = new System.Drawing.Point(639, 344);
+            this.textEmail.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textEmail.Name = "textEmail";
-            this.textEmail.Size = new System.Drawing.Size(100, 20);
+            this.textEmail.Size = new System.Drawing.Size(242, 24);
             this.textEmail.TabIndex = 11;
-            this.textEmail.TextChanged += new System.EventHandler(this.textEmail_TextChanged);
+            this.textEmail.Enter += new System.EventHandler(this.textEmail_Enter);
+            this.textEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textEmail_KeyDown);
+            this.textEmail.Leave += new System.EventHandler(this.textEmail_Leave);
             // 
             // textVarsta
             // 
-            this.textVarsta.Location = new System.Drawing.Point(219, 178);
+            this.textVarsta.Location = new System.Drawing.Point(511, 246);
+            this.textVarsta.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textVarsta.Name = "textVarsta";
-            this.textVarsta.Size = new System.Drawing.Size(100, 20);
+            this.textVarsta.Size = new System.Drawing.Size(91, 24);
             this.textVarsta.TabIndex = 12;
-            this.textVarsta.TextChanged += new System.EventHandler(this.textVarsta_TextChanged);
+            this.textVarsta.Enter += new System.EventHandler(this.textVarsta_Enter);
+            this.textVarsta.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textVarsta_KeyDown);
+            this.textVarsta.Leave += new System.EventHandler(this.textVarsta_Leave);
             // 
             // comboBoxSpecializare
             // 
             this.comboBoxSpecializare.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSpecializare.FormattingEnabled = true;
-            this.comboBoxSpecializare.Location = new System.Drawing.Point(365, 178);
+            this.comboBoxSpecializare.Location = new System.Drawing.Point(639, 246);
+            this.comboBoxSpecializare.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.comboBoxSpecializare.Name = "comboBoxSpecializare";
-            this.comboBoxSpecializare.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSpecializare.Size = new System.Drawing.Size(242, 26);
             this.comboBoxSpecializare.TabIndex = 14;
-            this.comboBoxSpecializare.SelectedIndexChanged += new System.EventHandler(this.comboBoxSpecializare_SelectedIndexChanged);
             // 
             // textTelefon
             // 
-            this.textTelefon.Location = new System.Drawing.Point(59, 267);
+            this.textTelefon.Location = new System.Drawing.Point(305, 344);
+            this.textTelefon.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textTelefon.Name = "textTelefon";
-            this.textTelefon.Size = new System.Drawing.Size(100, 20);
+            this.textTelefon.Size = new System.Drawing.Size(171, 24);
             this.textTelefon.TabIndex = 15;
-            this.textTelefon.TextChanged += new System.EventHandler(this.textTelefon_TextChanged);
+            this.textTelefon.Enter += new System.EventHandler(this.textTelefon_Enter);
+            this.textTelefon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textTelefon_KeyDown);
+            this.textTelefon.Leave += new System.EventHandler(this.textTelefon_Leave);
             // 
             // ButonValidare
             // 
-            this.ButonValidare.Location = new System.Drawing.Point(59, 312);
+            this.ButonValidare.Location = new System.Drawing.Point(258, 416);
+            this.ButonValidare.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.ButonValidare.Name = "ButonValidare";
-            this.ButonValidare.Size = new System.Drawing.Size(436, 23);
+            this.ButonValidare.Size = new System.Drawing.Size(685, 62);
             this.ButonValidare.TabIndex = 16;
             this.ButonValidare.Text = "Submit";
             this.ButonValidare.UseVisualStyleBackColor = true;
@@ -188,19 +219,33 @@ namespace MediciForms
             // buttonVizualizareMedici
             // 
             this.buttonVizualizareMedici.AutoSize = true;
-            this.buttonVizualizareMedici.Location = new System.Drawing.Point(663, 391);
+            this.buttonVizualizareMedici.Location = new System.Drawing.Point(1053, 540);
+            this.buttonVizualizareMedici.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.buttonVizualizareMedici.Name = "buttonVizualizareMedici";
-            this.buttonVizualizareMedici.Size = new System.Drawing.Size(100, 23);
+            this.buttonVizualizareMedici.Size = new System.Drawing.Size(167, 32);
             this.buttonVizualizareMedici.TabIndex = 17;
             this.buttonVizualizareMedici.Text = "Vizualizare medici";
             this.buttonVizualizareMedici.UseVisualStyleBackColor = true;
             this.buttonVizualizareMedici.Click += new System.EventHandler(this.buttonVizualizareMedici_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(454, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(285, 31);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Introducere date medic";
+            // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.ClientSize = new System.Drawing.Size(1333, 623);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonVizualizareMedici);
             this.Controls.Add(this.ButonValidare);
             this.Controls.Add(this.textTelefon);
@@ -217,8 +262,11 @@ namespace MediciForms
             this.Controls.Add(this.labelVarsta);
             this.Controls.Add(this.labelPrenume);
             this.Controls.Add(this.labelNume);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Inregistrare Medic";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,5 +290,6 @@ namespace MediciForms
         private System.Windows.Forms.Button ButonValidare;
         public System.Windows.Forms.ComboBox comboBoxGen;
         private System.Windows.Forms.Button buttonVizualizareMedici;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -18,6 +18,7 @@ namespace Program
            
            
                 AdministrareMediciFisier AdminMedic = new AdministrareMediciFisier();
+                NivelDeStocareMedic StocareMedic = new NivelDeStocareMedic();
             if (args.Length == 0)
             {
                 AdminMedic.SetFileName(FisierConfigurari.GetFileNameConf());
@@ -30,7 +31,7 @@ namespace Program
                 AdminMedic.SetFileName(args[0]);
                 
             }
-            NivelDeStocareMedic meds = new NivelDeStocareMedic();
+  
             Medic temp_medic = new Medic();
             char CHR;
             while (true)
@@ -44,7 +45,7 @@ namespace Program
 
                     case '1':
                         temp_medic = CitireMedicTastatura();
-                        meds.AddMedic(temp_medic);
+                        StocareMedic.AddMedic(temp_medic);
                         break;
                     case '2':
                         AfisareInfoMedic(temp_medic);
@@ -53,13 +54,13 @@ namespace Program
                         AdminMedic.AddMedicToFile(temp_medic);
                         break;
                     case '4':
-                        meds.SetMedics(AdminMedic.GetMedicsFromFile(out meds.nrMedici));
+                        StocareMedic.SetMedics(AdminMedic.GetMedicsFromFile());
                         break;
                     case '5':
-                        AfisareMedici(meds);
+                        AfisareMedici(StocareMedic.MediciList);
                         break;
                     case '6':
-                        meds.FindMedic();
+                        StocareMedic.FindMedic();
                         break;
 
                     default:
@@ -177,11 +178,11 @@ namespace Program
             Console.WriteLine(med.InfoPers());
         }
 
-        public static void AfisareMedici(NivelDeStocareMedic listamedici)
+        public static void AfisareMedici(List<Medic> listamedici)
         {
-            for (int i = 0; i < listamedici.nrMedici; i++)
+            foreach (var medic in listamedici) 
             {
-                Console.WriteLine(listamedici.Medici[i].InfoPers());
+                Console.WriteLine(medic.InfoPers());
             }
 
         }

@@ -19,17 +19,23 @@ namespace MediciForms
     public partial class Form2 : Form
     {
         private AdministrareMediciFisier AdminMedic;
-        private int NR_MAX_CARACTERE = 15;
+        private NivelDeStocareMedic StocareMedic;
+        private int NR_MAX_CARACTERE = 20;
         private Form form1; 
 
-        public Form2(Form _form1) {
-            InitializeComponent();
-            this.form1 = _form1;
-            
-        }
+        
         public Form2()
         {
+
             InitializeComponent();
+            textNume.TabIndex = 0;
+            textPrenume.TabIndex = 1;
+            comboBoxGen.TabIndex = 2;
+            textVarsta.TabIndex = 3;
+            comboBoxSpecializare.TabIndex = 4;
+            textTelefon.TabIndex = 5;
+            textEmail.TabIndex = 6;
+            ButonValidare.TabIndex = 7;
             this.Load += new EventHandler(Form2_Load);
         }
 
@@ -42,6 +48,7 @@ namespace MediciForms
                // MessageBox.Show(FisierConfigurari.GetFileNameConf());
 
                 AdminMedic = new AdministrareMediciFisier(FisierConfigurari.GetFileNameConf());
+                StocareMedic = new NivelDeStocareMedic();
             }
             catch (Exception)
             {
@@ -68,6 +75,21 @@ namespace MediciForms
         }
 
 
+        public string TextFormat(string text) {
+
+            if (string.IsNullOrWhiteSpace(text))
+            {
+
+                return string.Empty;
+            }
+            else {
+                text = text.Trim();
+                return text.Substring(0, 1).ToUpper() + text.Substring(1, text.Length - 1).ToLower();
+            }
+        
+        
+        
+        }
         public bool FunctieValidareText(string sample, string RegexValidation)
         {
 
@@ -271,53 +293,53 @@ namespace MediciForms
             return true;
         }
 
-        private void textNume_TextChanged(object sender, EventArgs e)
-        {
-            string nume = textNume.Text.Trim();
-            NumeValidation(nume);
-        }
+        //private void textNume_TextChanged(object sender, EventArgs e)
+        //{
+        //    string nume = textNume.Text.Trim();
+        //    NumeValidation(nume);
+        //}
 
-        private void textPrenume_TextChanged(object sender, EventArgs e)
-        {
-            string prenume = textPrenume.Text.Trim();
-            PrenumeValidation(prenume);
+        //private void textPrenume_TextChanged(object sender, EventArgs e)
+        //{
+        //    string prenume = textPrenume.Text.Trim();
+        //    PrenumeValidation(prenume);
            
-        }
+        //}
 
-        private void textEmail_TextChanged(object sender, EventArgs e)
-        {
-            string email = textEmail.Text.Trim();
-            EmailValidation(email);
+        //private void textEmail_TextChanged(object sender, EventArgs e)
+        //{
+        //    string email = textEmail.Text.Trim();
+        //    EmailValidation(email);
             
-        }
+        //}
 
-        private void textVarsta_TextChanged(object sender, EventArgs e)
-        {
-            string varsta = textVarsta.Text.Trim();
-            VarstaValidare(varsta);
+        //private void textVarsta_TextChanged(object sender, EventArgs e)
+        //{
+        //    string varsta = textVarsta.Text.Trim();
+        //    VarstaValidare(varsta);
           
 
-        }
+        //}
 
-        private void comboBoxGen_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string gen = comboBoxGen.SelectedItem.ToString();
-            GenValidare(gen);         
-        }
+        //private void comboBoxGen_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    string gen = comboBoxGen.SelectedItem.ToString();
+        //    GenValidare(gen);         
+        //}
 
-        private void comboBoxSpecializare_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string specializare = comboBoxSpecializare.SelectedItem.ToString();
-            SpecializareValidare(specializare);
+        //private void comboBoxSpecializare_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    string specializare = comboBoxSpecializare.SelectedItem.ToString();
+        //    SpecializareValidare(specializare);
            
-        }
+        //}
 
-        private void textTelefon_TextChanged(object sender, EventArgs e)
-        {
-            string Numar = textTelefon.Text.Trim();
-            NumarValidation(Numar);
+        //private void textTelefon_TextChanged(object sender, EventArgs e)
+        //{
+        //    string Numar = textTelefon.Text.Trim();
+        //    NumarValidation(Numar);
 
-        }
+        //}
 
 
         
@@ -327,14 +349,22 @@ namespace MediciForms
             if (Validare())
             {
                 char gen = (comboBoxGen.Text.Trim() == "Masculin" ? 'M' : 'F');
-                Medic stud = new Medic(textNume.Text.Trim(), textPrenume.Text.Trim(), Int32.Parse(textVarsta.Text.Trim()), gen, textTelefon.Text.Trim(), textEmail.Text.Trim(), comboBoxSpecializare.Text.Trim());
-                AdminMedic.AddMedicToFile(stud);
+                
+                Medic new_med = new Medic(textNume.Text.Trim(), textPrenume.Text.Trim(), Int32.Parse(textVarsta.Text.Trim()), gen, textTelefon.Text.Trim(), textEmail.Text.Trim(), comboBoxSpecializare.Text.Trim());
+                StocareMedic.MediciList = AdminMedic.GetMedicsFromFile();
+                if (!StocareMedic.AlreadyExists(new_med))
+                    AdminMedic.AddMedicToFile(new_med);
+                else {
+                    MessageBox.Show($"Medicul cu ID {new_med.GetID} deja exista!!!");
+                }
                 textNume.Clear();
                 textPrenume.Clear();
                 textVarsta.Clear();
                 textEmail.Clear();
                 comboBoxGen.Text = string.Empty;
+                comboBoxGen.ResetText();
                 comboBoxSpecializare.Text = string.Empty;
+                comboBoxSpecializare.ResetText();
                 textTelefon.Clear();
                 
             }
@@ -351,5 +381,150 @@ namespace MediciForms
             form1.Show();
             //this.Close();
         }
+
+        private void textNume_Leave(object sender, EventArgs e)
+        {
+            if (NumeValidation(textNume.Text))
+            {
+                textNume.Text = TextFormat(textNume.Text);
+            }
+           // textNume.BackColor = Color.White;
+        }
+
+        private void textNume_KeyDown(object sender, KeyEventArgs e)
+        {
+           
+            if (e.KeyCode == Keys.Enter) {
+                if (NumeValidation(textNume.Text))
+                {
+                    textNume.Text = TextFormat(textNume.Text);
+                }
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+           // textNume.BackColor = Color.White;
+        }
+
+        private void textPrenume_KeyDown(object sender, KeyEventArgs e)
+        {
+           
+            if (e.KeyCode == Keys.Enter)
+            {
+               if(PrenumeValidation((textPrenume.Text)))
+                {
+                    textPrenume.Text = TextFormat(textPrenume.Text);
+                }
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+
+            }
+           // textPrenume.BackColor = Color.White;
+        }
+        private void textPrenume_Leave(object sender, EventArgs e)
+        {
+            if (PrenumeValidation(textPrenume.Text))
+            {
+                textPrenume.Text = TextFormat(textPrenume.Text);
+            }
+           // textPrenume.BackColor = Color.White;
+        }
+
+        private void textVarsta_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (PrenumeValidation(textVarsta.Text))
+                {
+                    textVarsta.Text = TextFormat(textVarsta.Text);
+                }
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+           // textVarsta.BackColor = Color.White;
+        }
+
+        private void textVarsta_Leave(object sender, EventArgs e)
+        {
+            if (VarstaValidare(textVarsta.Text))
+            {
+                textVarsta.Text = TextFormat(textVarsta.Text);
+            }
+            //textVarsta.BackColor = Color.White;
+        }
+
+        private void textTelefon_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (NumarValidation(textTelefon.Text))
+                {
+                    textTelefon.Text = TextFormat(textTelefon.Text);
+                }
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+            //textTelefon.BackColor = Color.White;
+        }
+
+        private void textTelefon_Leave(object sender, EventArgs e)
+        {
+            if (NumarValidation(textTelefon.Text))
+            {
+                textTelefon.Text = TextFormat(textTelefon.Text);
+            }
+            //textTelefon.BackColor = Color.White;
+        }
+
+        private void textEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (EmailValidation(textEmail.Text))
+                {
+                    textEmail.Text = TextFormat(textEmail.Text);
+                }
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+            //textEmail.BackColor = Color.White;
+        }
+
+        private void textEmail_Leave(object sender, EventArgs e)
+        {
+            if (EmailValidation(textEmail.Text))
+            {
+                textEmail.Text = TextFormat(textEmail.Text);
+            }
+            //textEmail.BackColor = Color.White;
+        }
+
+        private void textNume_Enter(object sender, EventArgs e)
+        {
+            textNume.BackColor = Color.LightBlue;
+        }
+
+        private void textPrenume_Enter(object sender, EventArgs e)
+        {
+            textPrenume.BackColor = Color.LightBlue;
+        }
+
+        private void textVarsta_Enter(object sender, EventArgs e)
+        {
+            textVarsta.BackColor = Color.LightBlue;
+        }
+
+        private void textTelefon_Enter(object sender, EventArgs e)
+        {
+            textTelefon.BackColor = Color.LightBlue;
+        }
+
+        private void textEmail_Enter(object sender, EventArgs e)
+        {
+            textEmail.BackColor = Color.LightBlue;
+        }
     }
+
 }

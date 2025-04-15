@@ -12,6 +12,27 @@ namespace Policlinica
 
         private const char SEPARATOR = ';';
         string Specializare;
+        public int GetID {
+            get { return IdMedic; }
+        }
+        public string GetNume {
+            get { return Nume; }
+        }
+        public string GetPrenume {
+            get { return Prenume; }
+        }
+        public char GetGen {
+            get { return Gen; }
+         }
+        public int GetVarsta {
+            get { return age; }
+        }
+        public string GetEmail {
+            get { return email; }
+        }
+        public string GetTelefon {
+            get { return nrTelefon; }
+        }
         public string GetSpecializare
         {
             get { return Specializare; }
@@ -20,27 +41,6 @@ namespace Policlinica
         static int ID = 0 ;
 
         int IdMedic;
-        public int GetID {
-            get { return IdMedic; }
-        }
-        public char GetGen {
-            get { return Gen; }
-         }
-        public string GetEmail {
-            get { return email; }
-        }
-        public string GetTelefon {
-            get { return nrTelefon; }
-        }
-        public int GetVarsta {
-            get { return age; }
-        }
-        public string GetNume {
-            get { return Nume; }
-        }
-        public string GetPrenume {
-            get { return Prenume; }
-        }
 
         public Medic() : base()
         {

@@ -9,7 +9,7 @@ namespace AdministrareMedici
 {
     public class AdministrareMediciFisier
     {
-        private const int NR_MAX_MEDICI = 20;
+        //NivelDeStocareMedic StocareMedic = new NivelDeStocareMedic();
         public static string fileName = "Medics.txt";
 
 
@@ -39,22 +39,27 @@ namespace AdministrareMedici
         
         
         }
-        public Medic[] GetMedicsFromFile(out int nrMedics)
+
+       
+        
+        
+        public List<Medic> GetMedicsFromFile()
         {
-            Medic[] meds = new Medic[NR_MAX_MEDICI];
+            List<Medic> tempList = new List<Medic>(); 
             using (StreamReader readFileMedics = new StreamReader(fileName))
             {
                 string line;
-                nrMedics = 0;
+          
                 while ((line = readFileMedics.ReadLine()) != null)
                 {
-                    meds[nrMedics] = new Medic(line);
-                    nrMedics++;
+                   Medic temp_med = new Medic(line);
+                    tempList.Add(temp_med);
+                   
                 }
 
             }
             
-            return meds;
+            return tempList;
 
         }
     }
